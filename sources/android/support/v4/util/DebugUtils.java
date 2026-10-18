@@ -1,0 +1,26 @@
+package android.support.v4.util;
+
+import android.support.annotation.RestrictTo;
+import com.yftech.bsvservice.util.DVRConst;
+
+@RestrictTo({RestrictTo.Scope.LIBRARY_GROUP})
+/* loaded from: /home/user/work/dex/classes.dex */
+public class DebugUtils {
+    public static void buildShortClassTag(Object obj, StringBuilder sb) {
+        int lastIndexOf;
+        if (obj == null) {
+            sb.append(DVRConst.UNKOWN_CAMERA_ID);
+            return;
+        }
+        String simpleName = obj.getClass().getSimpleName();
+        if ((simpleName == null || simpleName.length() <= 0) && (lastIndexOf = (simpleName = obj.getClass().getName()).lastIndexOf(46)) > 0) {
+            simpleName = simpleName.substring(lastIndexOf + 1);
+        }
+        sb.append(simpleName);
+        sb.append('{');
+        sb.append(Integer.toHexString(System.identityHashCode(obj)));
+    }
+
+    private DebugUtils() {
+    }
+}
